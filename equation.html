@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mileage Calculator</title>
+  <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+</head>
+<body>
+  <div id="equations" class="tab-pane" style="text-align: center;">
+    <div class="report-container">
+      <h1>EQUATION CALCULATOR</h1><hr>
+      <div class="converter-wrapper">
+        <div class="converter" style="text-align: left;">
+          <label for="X" >X:&nbsp;&nbsp;</label>
+          <input type="number" onchange="calculateEqu()" id="x" placeholder="Enter value of x" style="width:50%;"><br>
+          <label for="Y" >Y: &nbsp;</label>
+          <input type="number" onchange="calculateEqu()" id="y" placeholder="Enter value of y" style="width:50%;"><br>
+          <label for="Equation" >Equation:&nbsp;&nbsp; </label>
+          <input type="text" onchange="calculateEqu()" id="equation" placeholder="Enter an equation" style="width:50%;" required>
+          <br><br>
+          <div id="equation-ans" style="color:rgb(0, 0, 0); text-align: center;"></div> 
+        </div>  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <!-- <script src="script.js"></script> -->
+  <script>
+function calculateEqu() {
+  var xInput = document.getElementById('x');
+  var yInput = document.getElementById('y');
+  var equationInput = document.getElementById('equation');
+  var equationAns = document.getElementById('equation-ans');
+
+  // Clear previous result
+  equationAns.innerHTML = '';
+
+  var x = parseFloat(xInput.value);
+  var y = parseFloat(yInput.value);
+  var equation = equationInput.value;
+
+  if (!isNaN(x)) {
+    // Calculate y using the equation
+    yInput.value = '';
+    yInput.setAttribute('disabled', 'disabled');
+    yInput.classList.add('disabled-input');
+
+    var result = eval(equation.replace(/x/g, x));
+    equationAns.innerHTML = 'Y = ' + result;
+  } else if (!isNaN(y)) {
+    // Calculate x using the equation
+    xInput.value = '';
+    xInput.setAttribute('disabled', 'disabled');
+    xInput.classList.add('disabled-input');
+
+    var result = eval(equation.replace(/y/g, y));
+    equationAns.innerHTML = 'X =  ' + result;
+  } else {
+    // Enable both inputs
+    xInput.removeAttribute('disabled');
+    xInput.classList.remove('disabled-input');
+    yInput.removeAttribute('disabled');
+    yInput.classList.remove('disabled-input');
+  }
+}
+
+
+
+
+  </script>
+</body>
+</html>
